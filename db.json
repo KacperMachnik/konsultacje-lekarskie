@@ -1,0 +1,151 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "doctor1@example.com",
+      "password": "test123",
+      "role": "doctor",
+      "name": "Dr. Polak"
+    },
+    {
+      "id": "2",
+      "email": "doctor2@example.com",
+      "password": "test123",
+      "role": "doctor",
+      "name": "Dr. Kowalski"
+    },
+    {
+      "id": "3",
+      "email": "patient1@example.com",
+      "password": "test123",
+      "role": "patient",
+      "name": "Anna Nowak"
+    },
+    {
+      "id": "4",
+      "email": "patient2@example.com",
+      "password": "test123",
+      "role": "patient",
+      "name": "Jan Wiśniewski"
+    }
+  ],
+  "availability": [
+    {
+      "id": "1",
+      "doctorId": 1,
+      "date": "2025-01-13",
+      "slots": [
+        {
+          "startTime": "06:00",
+          "endTime": "06:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "06:30",
+          "endTime": "07:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": false,
+      "recurringDay": null
+    },
+    {
+      "id": "2",
+      "doctorId": 1,
+      "date": "2025-01-14",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": false,
+      "recurringDay": null
+    },
+    {
+      "id": "3",
+      "doctorId": 1,
+      "date": "2025-01-15",
+      "slots": [
+        {
+          "startTime": "07:00",
+          "endTime": "07:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "07:30",
+          "endTime": "08:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": false,
+      "recurringDay": null
+    },
+    {
+      "id": "4",
+      "doctorId": 1,
+      "date": "2025-01-16",
+      "slots": [
+        {
+          "startTime": "06:00",
+          "endTime": "06:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "06:30",
+          "endTime": "07:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": false,
+      "recurringDay": null
+    },
+    {
+      "id": "5",
+      "doctorId": 1,
+      "date": "2025-01-17",
+      "slots": [
+        {
+          "startTime": "06:00",
+          "endTime": "06:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "06:30",
+          "endTime": "07:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": false,
+      "recurringDay": null
+    }
+  ]
+}

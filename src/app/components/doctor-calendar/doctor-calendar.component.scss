@@ -1,0 +1,137 @@
+.calendar-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tabs-container {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  border-radius: 4px 4px 0 0;
+}
+
+.tab-button.active {
+  border-color: #dee2e6 #dee2e6 #fff;
+  background-color: #fff;
+}
+
+.tab-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0 0 4px 4px;
+}
+
+.availability-type {
+  margin-bottom: 1.5rem;
+}
+
+.radio-label {
+  margin-right: 1.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.slots-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.slot-item {
+  padding: 0.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.weekdays-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.day-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-range {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.time-range input[type="time"] {
+  width: 150px;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.save-button {
+  margin-top: 2rem;
+}
+
+.absence-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.absence-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.dates {
+  font-weight: bold;
+}
+
+.reason {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+.my-booking-cancelled {
+  background-color: #ffd700;
+  cursor: not-allowed;
+}

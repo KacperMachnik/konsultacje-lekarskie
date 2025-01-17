@@ -1,0 +1,113 @@
+<div class="calendar-container">
+  <h2>Kalendarz wizyt</h2>
+
+  <div class="doctor-selector">
+    <label>Wybierz lekarza:</label>
+    <select
+      [(ngModel)]="selectedDoctorId"
+      (change)="onDoctorChange()"
+      class="form-control"
+    >
+      <option [ngValue]="null">Wybierz...</option>
+      <option *ngFor="let doctor of doctors" [value]="doctor.id">
+        {{ doctor.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="navigation">
+    <button (click)="previousWeek()">← Poprzedni tydzień</button>
+    <span>
+      {{ datePipe.transform(startDate, "dd.MM.yyyy") }} -
+      {{ datePipe.transform(endDate, "dd.MM.yyyy") }}
+    </span>
+    <button (click)="nextWeek()">Następny tydzień →</button>
+  </div>
+
+  <div class="week-calendar" *ngIf="selectedDoctorId">
+    <div class="headers">
+      <div class="time-header">Godzina</div>
+      <div
+        *ngFor="let day of weekDays"
+        class="day-header"
+        [class.absence-day]="isDoctorAbsent(day)"
+      >
+        {{ datePipe.transform(day, "EEEE") }}<br />
+        {{ datePipe.transform(day, "dd.MM") }}
+        <div *ngIf="isDoctorAbsent(day)" class="absence-indicator">
+          Nieobecny
+        </div>
+      </div>
+    </div>
+
+    <div class="time-slots">
+      <ng-container *ngFor="let slot of availableSlots">
+        <div class="time-row">
+          <div class="time-label">
+            {{ slot.startTime }} - {{ slot.endTime }}
+          </div>
+          <div
+            *ngFor="let day of weekDays"
+            class="slot-cell"
+            [class.available]="isSlotAvailable(day, slot)"
+            [class.booked]="
+              isSlotBooked(day, slot) &&
+              !isMyBooking(day, slot) &&
+              !isDoctorAbsent(day)
+            "
+            [class.my-booking]="
+              isMyBooking(day, slot) &&
+              !isSlotCancelled(day, slot) &&
+              !isDoctorAbsent(day)
+            "
+            [class.my-booking-cancelled]="
+              isMyBooking(day, slot) && isSlotCancelled(day, slot)
+            "
+            [class.cancelled]="
+              !isMyBooking(day, slot) && isSlotCancelled(day, slot)
+            "
+            [class.absence-slot]="
+              isDoctorAbsent(day) &&
+              !isSlotCancelled(day, slot) &&
+              !isMyBooking(day, slot)
+            "
+            [title]="getSlotTitle(day, slot)"
+            (click)="bookAppointment(day, slot)"
+          ></div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="legend" *ngIf="selectedDoctorId">
+    <h3>Legenda:</h3>
+    <div class="legend-item">
+      <div class="legend-color available"></div>
+      <span>Dostępny termin</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color booked"></div>
+      <span>Termin zajęty</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color my-booking"></div>
+      <span>Twoja wizyta (kliknij aby anulować)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color my-booking-cancelled"></div>
+      <span>Twoja anulowana wizyta</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color cancelled"></div>
+      <span>Wizyta odwołana</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color absence"></div>
+      <span>Nieobecność lekarza</span>
+    </div>
+  </div>
+
+  <div *ngIf="message" class="message" [class.error]="isError">
+    {{ message }}
+  </div>
+</div>

@@ -25,7 +25,7 @@ import { PatientCalendarComponent } from './components/patient-calendar/patient-
     ReactiveFormsModule,
     CommonModule,
   ],
-  providers: [DatePipe], // Dodaj DatePipe do providers
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

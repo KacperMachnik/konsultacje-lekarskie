@@ -18,12 +18,10 @@ export class AvailabilityService {
     startDate: string,
     endDate: string
   ): Observable<Availability[]> {
-    // JSON Server filtering
     const url = `${this.availabilityUrl}?doctorId=${doctorId}`;
     return this.http.get<Availability[]>(url).pipe(
       map((data) => {
         console.log('Raw API response:', data);
-        // Filter by date range on client side since JSON Server doesn't support date range queries
         const filtered = data.filter(
           (item) => item.date >= startDate && item.date <= endDate
         );
@@ -34,7 +32,6 @@ export class AvailabilityService {
   }
 
   getAbsences(doctorId: string): Observable<Absence[]> {
-    // JSON Server filtering
     const url = `${this.absencesUrl}?doctorId=${doctorId}`;
     return this.http.get<Absence[]>(url).pipe(
       map((absences) => {
@@ -45,10 +42,9 @@ export class AvailabilityService {
   }
 
   addAbsence(absence: Absence): Observable<Absence> {
-    // Ensure the absence has an ID for JSON Server
     const newAbsence = {
       ...absence,
-      id: Date.now().toString(), // Generate ID if not provided
+      id: Date.now().toString(),
     };
     return this.http.post<Absence>(this.absencesUrl, newAbsence);
   }
@@ -58,7 +54,6 @@ export class AvailabilityService {
   }
 
   setAvailability(availability: Availability): Observable<Availability> {
-    // Ensure we have an ID for JSON Server
     const newAvailability = {
       ...availability,
       id: availability.id || Date.now().toString(),
@@ -116,17 +111,13 @@ export class AvailabilityService {
     return this.updateAvailability(updatedAvailability);
   }
 
-  // Since JSON Server doesn't support complex operations,
-  // we'll handle cancellation by updating each affected availability record
   cancelAppointmentsForAbsence(
     doctorId: string,
     startDate: string,
     endDate: string
   ): Observable<void> {
-    // First get all availabilities in the date range
     return this.getAvailabilityForDoctor(doctorId, startDate, endDate).pipe(
       map((availabilities) => {
-        // Update each availability
         availabilities.forEach((availability) => {
           const updatedSlots = availability.slots.map((slot) => ({
             ...slot,

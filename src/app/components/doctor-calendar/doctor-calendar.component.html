@@ -1,0 +1,181 @@
+<div class="calendar-container">
+  <h2>Kalendarz dostępności</h2>
+
+  <div class="tabs-container">
+    <button
+      [class.active]="activeTab === 'availability'"
+      (click)="setActiveTab('availability')"
+      class="tab-button"
+    >
+      Dostępność
+    </button>
+    <button
+      [class.active]="activeTab === 'absence'"
+      (click)="setActiveTab('absence')"
+      class="tab-button"
+    >
+      Nieobecności
+    </button>
+  </div>
+
+  <div *ngIf="activeTab === 'availability'" class="tab-content">
+    <div class="availability-type">
+      <label class="radio-label">
+        <input
+          type="radio"
+          [value]="false"
+          [(ngModel)]="isRecurring"
+          name="availabilityType"
+        />
+        Jednorazowa dostępność
+      </label>
+      <label class="radio-label">
+        <input
+          type="radio"
+          [value]="true"
+          [(ngModel)]="isRecurring"
+          name="availabilityType"
+        />
+        Cykliczna dostępność
+      </label>
+    </div>
+
+    <div *ngIf="!isRecurring" class="single-availability">
+      <div class="date-selector">
+        <label>Data:</label>
+        <input
+          type="date"
+          [(ngModel)]="selectedDate"
+          (change)="loadAvailability()"
+          class="form-control"
+        />
+      </div>
+
+      <div class="slots-container">
+        <div *ngFor="let slot of availableSlots" class="slot-item">
+          <label>
+            <input
+              type="checkbox"
+              [checked]="isSlotSelected(slot)"
+              (change)="toggleSlot(slot)"
+              [disabled]="isSlotInAbsence(slot)"
+            />
+            {{ slot.startTime }} - {{ slot.endTime }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isRecurring" class="recurring-availability">
+      <div class="date-range">
+        <div class="form-group">
+          <label>Od:</label>
+          <input
+            type="date"
+            [(ngModel)]="recurringStartDate"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label>Do:</label>
+          <input
+            type="date"
+            [(ngModel)]="recurringEndDate"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="weekdays-selector">
+        <h4>Dni tygodnia:</h4>
+        <div class="weekdays-grid">
+          <label
+            *ngFor="let day of weekDays; let i = index"
+            class="day-checkbox"
+          >
+            <input
+              type="checkbox"
+              [(ngModel)]="selectedWeekDays[i]"
+              [value]="i + 1"
+            />
+            {{ day }}
+          </label>
+        </div>
+      </div>
+
+      <div class="time-ranges">
+        <h4>Przedziały czasowe:</h4>
+        <div *ngFor="let range of timeRanges; let i = index" class="time-range">
+          <input
+            type="time"
+            [(ngModel)]="range.startTime"
+            class="form-control"
+          />
+          <span>-</span>
+          <input type="time" [(ngModel)]="range.endTime" class="form-control" />
+          <button
+            (click)="removeTimeRange(i)"
+            class="btn btn-danger"
+            *ngIf="timeRanges.length > 1"
+          >
+            Usuń
+          </button>
+        </div>
+        <button (click)="addTimeRange()" class="btn btn-secondary">
+          Dodaj przedział czasowy
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'absence'" class="tab-content">
+    <div class="absence-form">
+      <div class="form-group">
+        <label>Od:</label>
+        <input type="date" [(ngModel)]="absenceStart" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Do:</label>
+        <input type="date" [(ngModel)]="absenceEnd" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Powód:</label>
+        <input
+          type="text"
+          [(ngModel)]="absenceReason"
+          class="form-control"
+          placeholder="Podaj powód nieobecności"
+        />
+      </div>
+      <button (click)="addAbsence()" class="btn btn-primary">
+        Dodaj nieobecność
+      </button>
+    </div>
+
+    <div class="absences-list">
+      <h4>Lista nieobecności:</h4>
+      <div *ngFor="let absence of absences" class="absence-item">
+        <div class="absence-details">
+          <span class="dates">
+            {{ absence.startDate | date }} - {{ absence.endDate | date }}
+          </span>
+          <span class="reason">{{ absence.reason }}</span>
+        </div>
+        <button
+          (click)="deleteAbsence(absence.id)"
+          class="btn btn-danger btn-sm"
+        >
+          Usuń
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button
+    (click)="saveAvailability()"
+    class="btn btn-primary save-button"
+    *ngIf="activeTab === 'availability'"
+  >
+    Zapisz dostępność
+  </button>
+</div>

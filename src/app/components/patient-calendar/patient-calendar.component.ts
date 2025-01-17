@@ -7,352 +7,10 @@ import { User } from '../../models/user.model';
 import { DatePipe } from '@angular/common';
 
 @Component({
+  standalone: false,
   selector: 'app-patient-calendar',
-  template: `
-    <div class="calendar-container">
-      <h2>Kalendarz wizyt</h2>
-
-      <div class="doctor-selector">
-        <label>Wybierz lekarza:</label>
-        <select
-          [(ngModel)]="selectedDoctorId"
-          (change)="onDoctorChange()"
-          class="form-control"
-        >
-          <option [ngValue]="null">Wybierz...</option>
-          <option *ngFor="let doctor of doctors" [value]="doctor.id">
-            {{ doctor.name }}
-          </option>
-        </select>
-      </div>
-
-      <div class="navigation">
-        <button (click)="previousWeek()">← Poprzedni tydzień</button>
-        <span>
-          {{ datePipe.transform(startDate, 'dd.MM.yyyy') }} -
-          {{ datePipe.transform(endDate, 'dd.MM.yyyy') }}
-        </span>
-        <button (click)="nextWeek()">Następny tydzień →</button>
-      </div>
-
-      <div class="week-calendar" *ngIf="selectedDoctorId">
-        <div class="headers">
-          <div class="time-header">Godzina</div>
-          <div
-            *ngFor="let day of weekDays"
-            class="day-header"
-            [class.absence-day]="isDoctorAbsent(day)"
-          >
-            {{ datePipe.transform(day, 'EEEE') }}<br />
-            {{ datePipe.transform(day, 'dd.MM') }}
-            <div *ngIf="isDoctorAbsent(day)" class="absence-indicator">
-              Nieobecny
-            </div>
-          </div>
-        </div>
-
-        <div class="time-slots">
-          <ng-container *ngFor="let slot of availableSlots">
-            <div class="time-row">
-              <div class="time-label">
-                {{ slot.startTime }} - {{ slot.endTime }}
-              </div>
-              <div
-                *ngFor="let day of weekDays"
-                class="slot-cell"
-                [class.available]="isSlotAvailable(day, slot)"
-                [class.booked]="
-                  isSlotBooked(day, slot) &&
-                  !isMyBooking(day, slot) &&
-                  !isDoctorAbsent(day)
-                "
-                [class.my-booking]="
-                  isMyBooking(day, slot) &&
-                  !isSlotCancelled(day, slot) &&
-                  !isDoctorAbsent(day)
-                "
-                [class.my-booking-cancelled]="
-                  isMyBooking(day, slot) && isSlotCancelled(day, slot)
-                "
-                [class.cancelled]="
-                  !isMyBooking(day, slot) && isSlotCancelled(day, slot)
-                "
-                [class.absence-slot]="
-                  isDoctorAbsent(day) &&
-                  !isSlotCancelled(day, slot) &&
-                  !isMyBooking(day, slot)
-                "
-                [title]="getSlotTitle(day, slot)"
-                (click)="bookAppointment(day, slot)"
-              ></div>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-
-      <div class="legend" *ngIf="selectedDoctorId">
-        <h3>Legenda:</h3>
-        <div class="legend-item">
-          <div class="legend-color available"></div>
-          <span>Dostępny termin</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color booked"></div>
-          <span>Termin zajęty</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color my-booking"></div>
-          <span>Twoja wizyta (kliknij aby anulować)</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color my-booking-cancelled"></div>
-          <span>Twoja anulowana wizyta</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color cancelled"></div>
-          <span>Wizyta odwołana</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color absence"></div>
-          <span>Nieobecność lekarza</span>
-        </div>
-      </div>
-
-      <div *ngIf="message" class="message" [class.error]="isError">
-        {{ message }}
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      .calendar-container {
-        padding: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .doctor-selector {
-        margin-bottom: 1rem;
-        padding: 1rem;
-        background: #f8f9fa;
-        border-radius: 4px;
-      }
-
-      .form-control {
-        width: 100%;
-        padding: 0.5rem;
-        margin-top: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-
-      .navigation {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-        padding: 1rem;
-        background: #f8f9fa;
-        border-radius: 4px;
-      }
-
-      .week-calendar {
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: 1rem;
-      }
-
-      .headers {
-        display: grid;
-        grid-template-columns: 120px repeat(7, 1fr);
-        background: #f5f5f5;
-      }
-
-      .time-header,
-      .day-header {
-        padding: 1rem;
-        text-align: center;
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-        font-weight: bold;
-      }
-
-      .day-header.absence-day {
-        background-color: #ffebee;
-      }
-
-      .absence-indicator {
-        font-size: 0.8rem;
-        color: #dc3545;
-        margin-top: 0.25rem;
-      }
-
-      .time-slots {
-        display: grid;
-      }
-
-      .time-row {
-        display: grid;
-        grid-template-columns: 120px repeat(7, 1fr);
-        border-bottom: 1px solid #eee;
-      }
-
-      .time-label {
-        padding: 0.5rem;
-        background: #f8f9fa;
-        border-right: 1px solid #ccc;
-        font-size: 0.9rem;
-      }
-
-      .slot-cell {
-        padding: 1rem;
-        border-right: 1px solid #eee;
-        cursor: pointer;
-        min-height: 50px;
-      }
-
-      .available {
-        background-color: #90ee90;
-        transition: background-color 0.2s;
-      }
-
-      .available:hover {
-        background-color: #70cc70;
-      }
-
-      .booked {
-        background-color: #ffb6c1;
-        cursor: not-allowed;
-      }
-
-      .my-booking {
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-
-      .my-booking:hover {
-        background-color: #0056b3;
-      }
-
-      .my-booking-cancelled {
-        background-color: #ffd700;
-        cursor: not-allowed;
-      }
-
-      .absence-slot {
-        background-color: rgba(
-          255,
-          235,
-          238,
-          0.7
-        ); /* półprzezroczysty czerwony */
-        cursor: not-allowed;
-      }
-
-      .legend-color.absence-slot {
-        background-color: rgba(255, 235, 238, 1); /* pełny kolor dla legendy */
-      }
-
-      .cancelled {
-        background-color: #ffe0e0;
-        position: relative;
-        cursor: not-allowed;
-      }
-
-      .cancelled::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 10px,
-          rgba(220, 53, 69, 0.1) 10px,
-          rgba(220, 53, 69, 0.1) 20px
-        );
-      }
-
-      button {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 4px;
-        background: #007bff;
-        color: white;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background: #0056b3;
-      }
-
-      .message {
-        margin-top: 1rem;
-        padding: 1rem;
-        border-radius: 4px;
-        background-color: #d4edda;
-        color: #155724;
-      }
-
-      .message.error {
-        background-color: #f8d7da;
-        color: #721c24;
-      }
-
-      .legend {
-        margin-top: 1rem;
-        padding: 1rem;
-        background: #f8f9fa;
-        border-radius: 4px;
-      }
-
-      .legend h3 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
-
-      .legend-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 0.5rem;
-      }
-
-      .legend-color {
-        width: 20px;
-        height: 20px;
-        margin-right: 0.5rem;
-        border-radius: 4px;
-      }
-
-      .legend-color.available {
-        background-color: #90ee90;
-      }
-      .legend-color.booked {
-        background-color: #ffb6c1;
-      }
-      .legend-color.my-booking {
-        background-color: #007bff;
-      }
-      .legend-color.my-booking-cancelled {
-        background-color: #ffd700;
-      }
-      .legend-color.cancelled {
-        background-color: #ffe0e0;
-      }
-      .legend-color.absence {
-        background-color: #ffebee;
-      }
-
-      .legend-item:last-child {
-        margin-bottom: 0;
-      }
-    `,
-  ],
+  templateUrl: './patient-calendar.component.html',
+  styleUrl: './patient-calendar.component.scss',
   providers: [DatePipe],
 })
 export class PatientCalendarComponent implements OnInit {
@@ -397,7 +55,7 @@ export class PatientCalendarComponent implements OnInit {
   onDoctorChange() {
     console.log('Doctor changed:', this.selectedDoctorId);
     if (this.selectedDoctorId) {
-      this.loadAbsences(); // Add this line
+      this.loadAbsences();
       this.loadAvailabilities();
     }
   }
@@ -511,7 +169,6 @@ export class PatientCalendarComponent implements OnInit {
     );
   }
 
-  // Add new method for loading absences
   loadAbsences() {
     if (!this.selectedDoctorId) return;
 
@@ -519,7 +176,7 @@ export class PatientCalendarComponent implements OnInit {
       (absences) => {
         console.log('Loaded absences:', absences);
         this.absences = absences;
-        this.loadAvailabilities(); // Reload to reflect cancelled appointments
+        this.loadAvailabilities();
       },
       (error) => {
         console.error('Error loading absences:', error);
@@ -561,7 +218,6 @@ export class PatientCalendarComponent implements OnInit {
 
     if (!availability) return;
 
-    // Jeśli to moja rezerwacja, anuluj ją
     if (this.isMyBooking(day, slot)) {
       const updatedSlots = availability.slots.map((s) =>
         s.startTime === slot.startTime && s.endTime === slot.endTime
@@ -589,12 +245,10 @@ export class PatientCalendarComponent implements OnInit {
       return;
     }
 
-    // Jeśli slot jest zajęty lub anulowany, nie pozwalaj na rezerwację
     if (this.isSlotBooked(day, slot) || this.isSlotCancelled(day, slot)) {
       return;
     }
 
-    // Standardowa rezerwacja dla dostępnego slotu
     if (this.isSlotAvailable(day, slot)) {
       const updatedSlots = availability.slots.map((s) =>
         s.startTime === slot.startTime && s.endTime === slot.endTime

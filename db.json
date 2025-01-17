@@ -27,6 +27,13 @@
       "password": "test123",
       "role": "patient",
       "name": "Jan Wiśniewski"
+    },
+    {
+      "id": "5",
+      "email": "doctor3@example.com",
+      "password": "test123",
+      "role": "doctor",
+      "name": "Dr. Królik"
     }
   ],
   "availability": [
@@ -290,6 +297,2214 @@
       ],
       "isRecurring": false,
       "recurringDay": null
+    },
+    {
+      "id": "1737126717749_2025-01-03T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-03",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 5,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717750_2025-01-08T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-08",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 3,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717748_2025-01-01T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-01",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 3,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717749_2025-01-06T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-06",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 1,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717749_2025-01-07T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-07",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 2,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717749_2025-01-02T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-02",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 4,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717751_2025-01-14T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-14",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 2,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717750_2025-01-13T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-13",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 1,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717750_2025-01-10T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-10",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 5,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717751_2025-01-15T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-15",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 3,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717750_2025-01-09T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-09",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 4,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717751_2025-01-16T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-16",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 4,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717751_2025-01-17T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-17",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 5,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717752_2025-01-23T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-23",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 4,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717752_2025-01-21T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-21",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 2,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717751_2025-01-20T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-20",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 1,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717752_2025-01-22T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-22",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 3,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717753_2025-01-24T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-24",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 5,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717753_2025-01-27T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-27",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 1,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717754_2025-01-30T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-30",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 4,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717754_2025-01-29T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-29",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 3,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717754_2025-01-28T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-28",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 2,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
+    },
+    {
+      "id": "1737126717755_2025-01-31T00:00:00.000Z",
+      "doctorId": "5",
+      "date": "2025-01-31",
+      "slots": [
+        {
+          "startTime": "08:00",
+          "endTime": "08:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "08:30",
+          "endTime": "09:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "09:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "10:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "11:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:00",
+          "endTime": "11:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:00",
+          "endTime": "13:30",
+          "isBooked": false,
+          "patientId": null
+        },
+        {
+          "startTime": "13:30",
+          "endTime": "14:00",
+          "isBooked": false,
+          "patientId": null
+        }
+      ],
+      "isRecurring": true,
+      "recurringDay": 5,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31",
+      "weekDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "timeRanges": [
+        {
+          "startTime": "08:00",
+          "endTime": "14:00"
+        }
+      ]
     }
   ],
   "absences": [
@@ -306,6 +2521,13 @@
       "startDate": "2025-01-17",
       "endDate": "2025-01-17",
       "reason": "Sprawy rodzinne"
+    },
+    {
+      "id": "1737126735778",
+      "doctorId": "5",
+      "startDate": "2025-01-20",
+      "endDate": "2025-01-20",
+      "reason": "Sprawy Rodzinne"
     }
   ]
 }

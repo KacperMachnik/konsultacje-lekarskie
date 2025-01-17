@@ -11,351 +11,12 @@ interface TimeRange {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-doctor-calendar',
-  template: `
-    <div class="calendar-container">
-      <h2>Kalendarz dostępności</h2>
-
-      <!-- Tabs -->
-      <div class="tabs-container">
-        <button
-          [class.active]="activeTab === 'availability'"
-          (click)="setActiveTab('availability')"
-          class="tab-button"
-        >
-          Dostępność
-        </button>
-        <button
-          [class.active]="activeTab === 'absence'"
-          (click)="setActiveTab('absence')"
-          class="tab-button"
-        >
-          Nieobecności
-        </button>
-      </div>
-
-      <!-- Availability Tab Content -->
-      <div *ngIf="activeTab === 'availability'" class="tab-content">
-        <div class="availability-type">
-          <label class="radio-label">
-            <input
-              type="radio"
-              [value]="false"
-              [(ngModel)]="isRecurring"
-              name="availabilityType"
-            />
-            Jednorazowa dostępność
-          </label>
-          <label class="radio-label">
-            <input
-              type="radio"
-              [value]="true"
-              [(ngModel)]="isRecurring"
-              name="availabilityType"
-            />
-            Cykliczna dostępność
-          </label>
-        </div>
-
-        <!-- One-time Availability -->
-        <div *ngIf="!isRecurring" class="single-availability">
-          <div class="date-selector">
-            <label>Data:</label>
-            <input
-              type="date"
-              [(ngModel)]="selectedDate"
-              (change)="loadAvailability()"
-              class="form-control"
-            />
-          </div>
-
-          <div class="slots-container">
-            <div *ngFor="let slot of availableSlots" class="slot-item">
-              <label>
-                <input
-                  type="checkbox"
-                  [checked]="isSlotSelected(slot)"
-                  (change)="toggleSlot(slot)"
-                  [disabled]="isSlotInAbsence(slot)"
-                />
-                {{ slot.startTime }} - {{ slot.endTime }}
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recurring Availability -->
-        <div *ngIf="isRecurring" class="recurring-availability">
-          <div class="date-range">
-            <div class="form-group">
-              <label>Od:</label>
-              <input
-                type="date"
-                [(ngModel)]="recurringStartDate"
-                class="form-control"
-              />
-            </div>
-            <div class="form-group">
-              <label>Do:</label>
-              <input
-                type="date"
-                [(ngModel)]="recurringEndDate"
-                class="form-control"
-              />
-            </div>
-          </div>
-
-          <div class="weekdays-selector">
-            <h4>Dni tygodnia:</h4>
-            <div class="weekdays-grid">
-              <label
-                *ngFor="let day of weekDays; let i = index"
-                class="day-checkbox"
-              >
-                <input
-                  type="checkbox"
-                  [(ngModel)]="selectedWeekDays[i]"
-                  [value]="i + 1"
-                />
-                {{ day }}
-              </label>
-            </div>
-          </div>
-
-          <div class="time-ranges">
-            <h4>Przedziały czasowe:</h4>
-            <div
-              *ngFor="let range of timeRanges; let i = index"
-              class="time-range"
-            >
-              <input
-                type="time"
-                [(ngModel)]="range.startTime"
-                class="form-control"
-              />
-              <span>-</span>
-              <input
-                type="time"
-                [(ngModel)]="range.endTime"
-                class="form-control"
-              />
-              <button
-                (click)="removeTimeRange(i)"
-                class="btn btn-danger"
-                *ngIf="timeRanges.length > 1"
-              >
-                Usuń
-              </button>
-            </div>
-            <button (click)="addTimeRange()" class="btn btn-secondary">
-              Dodaj przedział czasowy
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Absence Tab Content -->
-      <div *ngIf="activeTab === 'absence'" class="tab-content">
-        <div class="absence-form">
-          <div class="form-group">
-            <label>Od:</label>
-            <input
-              type="date"
-              [(ngModel)]="absenceStart"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <label>Do:</label>
-            <input type="date" [(ngModel)]="absenceEnd" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label>Powód:</label>
-            <input
-              type="text"
-              [(ngModel)]="absenceReason"
-              class="form-control"
-              placeholder="Podaj powód nieobecności"
-            />
-          </div>
-          <button (click)="addAbsence()" class="btn btn-primary">
-            Dodaj nieobecność
-          </button>
-        </div>
-
-        <div class="absences-list">
-          <h4>Lista nieobecności:</h4>
-          <div *ngFor="let absence of absences" class="absence-item">
-            <div class="absence-details">
-              <span class="dates">
-                {{ absence.startDate | date }} - {{ absence.endDate | date }}
-              </span>
-              <span class="reason">{{ absence.reason }}</span>
-            </div>
-            <button
-              (click)="deleteAbsence(absence.id)"
-              class="btn btn-danger btn-sm"
-            >
-              Usuń
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Save Button -->
-      <button
-        (click)="saveAvailability()"
-        class="btn btn-primary save-button"
-        *ngIf="activeTab === 'availability'"
-      >
-        Zapisz dostępność
-      </button>
-    </div>
-  `,
-  styles: [
-    `
-      .calendar-container {
-        padding: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .tabs-container {
-        margin-bottom: 2rem;
-        border-bottom: 1px solid #dee2e6;
-      }
-
-      .tab-button {
-        padding: 0.75rem 1.5rem;
-        border: 1px solid transparent;
-        background: none;
-        cursor: pointer;
-        margin-right: 0.5rem;
-        border-radius: 4px 4px 0 0;
-      }
-
-      .tab-button.active {
-        border-color: #dee2e6 #dee2e6 #fff;
-        background-color: #fff;
-      }
-
-      .tab-content {
-        background: #fff;
-        padding: 1.5rem;
-        border-radius: 0 0 4px 4px;
-      }
-
-      .availability-type {
-        margin-bottom: 1.5rem;
-      }
-
-      .radio-label {
-        margin-right: 1.5rem;
-      }
-
-      .form-control {
-        width: 100%;
-        padding: 0.5rem;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-      }
-
-      .slots-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-        margin: 1rem 0;
-      }
-
-      .slot-item {
-        padding: 0.5rem;
-        border: 1px solid #dee2e6;
-        border-radius: 4px;
-      }
-
-      .weekdays-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 0.5rem;
-        margin: 1rem 0;
-      }
-
-      .day-checkbox {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .time-range {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .time-range input[type='time'] {
-        width: 150px;
-      }
-
-      .btn {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      .btn-primary {
-        background-color: #007bff;
-        color: white;
-      }
-
-      .btn-secondary {
-        background-color: #6c757d;
-        color: white;
-      }
-
-      .btn-danger {
-        background-color: #dc3545;
-        color: white;
-      }
-
-      .save-button {
-        margin-top: 2rem;
-      }
-
-      .absence-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        border: 1px solid #dee2e6;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-      }
-
-      .absence-details {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .dates {
-        font-weight: bold;
-      }
-
-      .reason {
-        color: #6c757d;
-        font-size: 0.9rem;
-      }
-      .my-booking-cancelled {
-        background-color: #ffd700; /* żółty kolor dla anulowanej wizyty */
-        cursor: not-allowed;
-      }
-    `,
-  ],
+  templateUrl: 'doctor-calendar.component.html',
+  styleUrl: 'doctor-calendar.component.scss',
 })
 export class DoctorCalendarComponent implements OnInit {
-  // Basic availability properties
   selectedDate: string = '';
   availableSlots: TimeSlot[] = [];
   selectedSlots: TimeSlot[] = [];
@@ -364,10 +25,8 @@ export class DoctorCalendarComponent implements OnInit {
   message: string = '';
   isError: boolean = false;
 
-  // UI state
   activeTab: 'availability' | 'absence' = 'availability';
 
-  // Recurring availability properties
   recurringStartDate: string = '';
   recurringEndDate: string = '';
   weekDays = [
@@ -382,7 +41,6 @@ export class DoctorCalendarComponent implements OnInit {
   selectedWeekDays: boolean[] = new Array(7).fill(false);
   timeRanges: TimeRange[] = [{ startTime: '', endTime: '' }];
 
-  // Absence properties
   absences: Absence[] = [];
   absenceStart: string = '';
   absenceEnd: string = '';
@@ -390,7 +48,7 @@ export class DoctorCalendarComponent implements OnInit {
 
   constructor(
     private availabilityService: AvailabilityService,
-    private absenceService: AbsenceService, // Dodaj to
+    private absenceService: AbsenceService,
     private authService: AuthService,
     private datePipe: DatePipe
   ) {}
@@ -451,7 +109,6 @@ export class DoctorCalendarComponent implements OnInit {
   }
 
   isSlotInAbsence(slot: TimeSlot): boolean {
-    // Implement checking if slot falls within any absence period
     return false;
   }
 
@@ -500,7 +157,7 @@ export class DoctorCalendarComponent implements OnInit {
         (savedAbsence) => {
           console.log('Absence saved:', savedAbsence);
           this.showMessage('Nieobecność została dodana');
-          this.loadAbsences(); // Odśwież listę
+          this.loadAbsences();
           this.clearAbsenceForm();
         },
         (error) => {
@@ -520,7 +177,7 @@ export class DoctorCalendarComponent implements OnInit {
     this.absenceService.deleteAbsence(id).subscribe(
       () => {
         this.showMessage('Nieobecność została usunięta');
-        this.loadAbsences(); // Odśwież listę po usunięciu
+        this.loadAbsences();
       },
       (error) => {
         console.error('Error deleting absence:', error);
@@ -571,7 +228,6 @@ export class DoctorCalendarComponent implements OnInit {
     if (!doctorId) return;
 
     if (this.isRecurring) {
-      // Handle recurring availability
       const selectedDays = this.selectedWeekDays
         .map((isSelected, index) => (isSelected ? index + 1 : null))
         .filter((day) => day !== null);
@@ -592,13 +248,12 @@ export class DoctorCalendarComponent implements OnInit {
         return;
       }
 
-      // Create availabilities for each selected day within date range
       const start = new Date(this.recurringStartDate);
       const end = new Date(this.recurringEndDate);
       const currentDate = new Date(start);
 
       while (currentDate <= end) {
-        const dayOfWeek = currentDate.getDay() || 7; // Convert Sunday from 0 to 7
+        const dayOfWeek = currentDate.getDay() || 7;
         if (selectedDays.includes(dayOfWeek)) {
           const availability: Availability = {
             id: `${Date.now()}_${currentDate.toISOString()}`,
@@ -621,7 +276,6 @@ export class DoctorCalendarComponent implements OnInit {
         currentDate.setDate(currentDate.getDate() + 1);
       }
     } else {
-      // Handle one-time availability
       const availability: Availability = {
         id: Date.now().toString(),
         doctorId,
@@ -651,7 +305,6 @@ export class DoctorCalendarComponent implements OnInit {
   }
 
   checkAvailabilityConflicts(date: string): boolean {
-    // Implement checking for conflicts with existing availabilities
     return false;
   }
 

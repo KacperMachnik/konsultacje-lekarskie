@@ -2,35 +2,35 @@
   "users": [
     {
       "id": "1",
-      "email": "doctor1@example.com",
+      "email": "doctor1@mail.com",
       "password": "test123",
       "role": "doctor",
       "name": "Dr. Polak"
     },
     {
       "id": "2",
-      "email": "doctor2@example.com",
+      "email": "doctor2@mail.com",
       "password": "test123",
       "role": "doctor",
       "name": "Dr. Kowalski"
     },
     {
       "id": "3",
-      "email": "patient1@example.com",
+      "email": "patient1@mail.com",
       "password": "test123",
       "role": "patient",
       "name": "Anna Nowak"
     },
     {
       "id": "4",
-      "email": "patient2@example.com",
+      "email": "patient2@mail.com",
       "password": "test123",
       "role": "patient",
       "name": "Jan Wiśniewski"
     },
     {
       "id": "5",
-      "email": "doctor3@example.com",
+      "email": "doctor3@mail.com",
       "password": "test123",
       "role": "doctor",
       "name": "Dr. Królik"
@@ -59,10 +59,7 @@
       "recurringDay": 1,
       "startDate": "2025-01-20",
       "endDate": "2025-02-06",
-      "weekDays": [
-        1,
-        2
-      ],
+      "weekDays": [1, 2],
       "timeRanges": [
         {
           "startTime": "06:00",
@@ -93,10 +90,7 @@
       "recurringDay": 2,
       "startDate": "2025-01-20",
       "endDate": "2025-02-06",
-      "weekDays": [
-        1,
-        2
-      ],
+      "weekDays": [1, 2],
       "timeRanges": [
         {
           "startTime": "06:00",
@@ -126,10 +120,7 @@
       "recurringDay": 1,
       "startDate": "2025-01-20",
       "endDate": "2025-02-06",
-      "weekDays": [
-        1,
-        2
-      ],
+      "weekDays": [1, 2],
       "timeRanges": [
         {
           "startTime": "06:00",
@@ -160,10 +151,7 @@
       "recurringDay": 1,
       "startDate": "2025-01-20",
       "endDate": "2025-02-06",
-      "weekDays": [
-        1,
-        2
-      ],
+      "weekDays": [1, 2],
       "timeRanges": [
         {
           "startTime": "06:00",
@@ -193,10 +181,7 @@
       "recurringDay": 2,
       "startDate": "2025-01-20",
       "endDate": "2025-02-06",
-      "weekDays": [
-        1,
-        2
-      ],
+      "weekDays": [1, 2],
       "timeRanges": [
         {
           "startTime": "06:00",
@@ -227,10 +212,7 @@
       "recurringDay": 2,
       "startDate": "2025-01-20",
       "endDate": "2025-02-06",
-      "weekDays": [
-        1,
-        2
-      ],
+      "weekDays": [1, 2],
       "timeRanges": [
         {
           "startTime": "06:00",
@@ -380,13 +362,7 @@
       "recurringDay": 5,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -476,13 +452,7 @@
       "recurringDay": 3,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -572,13 +542,7 @@
       "recurringDay": 3,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -668,13 +632,7 @@
       "recurringDay": 1,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -764,13 +722,7 @@
       "recurringDay": 2,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -860,13 +812,7 @@
       "recurringDay": 4,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -956,13 +902,7 @@
       "recurringDay": 2,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1052,13 +992,7 @@
       "recurringDay": 1,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1148,13 +1082,7 @@
       "recurringDay": 5,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1244,13 +1172,7 @@
       "recurringDay": 3,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1340,13 +1262,7 @@
       "recurringDay": 4,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1436,13 +1352,7 @@
       "recurringDay": 4,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1532,13 +1442,7 @@
       "recurringDay": 5,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1628,13 +1532,7 @@
       "recurringDay": 4,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1724,13 +1622,7 @@
       "recurringDay": 2,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1820,13 +1712,7 @@
       "recurringDay": 1,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -1916,13 +1802,7 @@
       "recurringDay": 3,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -2012,13 +1892,7 @@
       "recurringDay": 5,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -2108,13 +1982,7 @@
       "recurringDay": 1,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -2204,13 +2072,7 @@
       "recurringDay": 4,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -2300,13 +2162,7 @@
       "recurringDay": 3,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -2396,13 +2252,7 @@
       "recurringDay": 2,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",
@@ -2492,13 +2342,7 @@
       "recurringDay": 5,
       "startDate": "2025-01-01",
       "endDate": "2025-01-31",
-      "weekDays": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "weekDays": [1, 2, 3, 4, 5],
       "timeRanges": [
         {
           "startTime": "08:00",

@@ -49,10 +49,6 @@ export class AvailabilityService {
     return this.http.post<Absence>(this.absencesUrl, newAbsence);
   }
 
-  deleteAbsence(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.absencesUrl}/${id}`);
-  }
-
   setAvailability(availability: Availability): Observable<Availability> {
     const newAvailability = {
       ...availability,
@@ -95,43 +91,5 @@ export class AvailabilityService {
     }
     console.log('Generated slots:', slots);
     return slots;
-  }
-
-  bookAppointment(
-    availability: Availability,
-    slot: TimeSlot,
-    patientId: string
-  ): Observable<Availability> {
-    const updatedSlots = availability.slots.map((s) =>
-      s.startTime === slot.startTime && s.endTime === slot.endTime
-        ? { ...s, isBooked: true, patientId, isCancelled: false }
-        : s
-    );
-    const updatedAvailability = { ...availability, slots: updatedSlots };
-    return this.updateAvailability(updatedAvailability);
-  }
-
-  cancelAppointmentsForAbsence(
-    doctorId: string,
-    startDate: string,
-    endDate: string
-  ): Observable<void> {
-    return this.getAvailabilityForDoctor(doctorId, startDate, endDate).pipe(
-      map((availabilities) => {
-        availabilities.forEach((availability) => {
-          const updatedSlots = availability.slots.map((slot) => ({
-            ...slot,
-            isCancelled: slot.isBooked ? true : false,
-          }));
-
-          const updatedAvailability = {
-            ...availability,
-            slots: updatedSlots,
-          };
-
-          this.updateAvailability(updatedAvailability).subscribe();
-        });
-      })
-    );
   }
 }

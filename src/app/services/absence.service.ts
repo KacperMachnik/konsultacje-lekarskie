@@ -21,10 +21,4 @@ export class AbsenceService {
   deleteAbsence(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
-  checkConflicts(absence: Absence): Observable<Availability[]> {
-    return this.http.get<Availability[]>(
-      `${this.apiUrl}/conflicts?doctorId=${absence.doctorId}&startDate=${absence.startDate}&endDate=${absence.endDate}`
-    );
-  }
 }

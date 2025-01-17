@@ -22,8 +22,6 @@ export class PatientCalendarComponent implements OnInit {
   doctors: User[] = [];
   absences: Absence[] = [];
   selectedDoctorId: string | null = null;
-  message: string = '';
-  isError: boolean = false;
 
   constructor(
     private availabilityService: AvailabilityService,
@@ -42,14 +40,9 @@ export class PatientCalendarComponent implements OnInit {
   }
 
   loadDoctors() {
-    this.doctorService.getDoctors().subscribe(
-      (doctors) => {
-        this.doctors = doctors;
-      },
-      (error) => {
-        this.showMessage('Nie udało się załadować listy lekarzy', true);
-      }
-    );
+    this.doctorService.getDoctors().subscribe((doctors) => {
+      this.doctors = doctors;
+    });
   }
 
   onDoctorChange() {
@@ -114,7 +107,6 @@ export class PatientCalendarComponent implements OnInit {
         },
         (error) => {
           console.error('Error loading availabilities:', error);
-          this.showMessage('Nie udało się załadować harmonogramu', true);
         }
       );
   }
@@ -180,7 +172,6 @@ export class PatientCalendarComponent implements OnInit {
       },
       (error) => {
         console.error('Error loading absences:', error);
-        this.showMessage('Nie udało się załadować nieobecności lekarza', true);
       }
     );
   }
@@ -203,12 +194,10 @@ export class PatientCalendarComponent implements OnInit {
   bookAppointment(day: Date, slot: TimeSlot) {
     const currentUser = this.authService.currentUserValue;
     if (!currentUser) {
-      this.showMessage('Musisz być zalogowany aby zarezerwować wizytę', true);
       return;
     }
 
     if (this.isDoctorAbsent(day)) {
-      this.showMessage('Lekarz jest nieobecny w tym dniu', true);
       return;
     }
 
@@ -234,12 +223,10 @@ export class PatientCalendarComponent implements OnInit {
         .updateAvailability(updatedAvailability)
         .subscribe(
           () => {
-            this.showMessage('Wizyta została anulowana');
             this.loadAvailabilities();
           },
           (error) => {
             console.error('Error cancelling appointment:', error);
-            this.showMessage('Nie udało się anulować wizyty', true);
           }
         );
       return;
@@ -270,24 +257,15 @@ export class PatientCalendarComponent implements OnInit {
         .updateAvailability(updatedAvailability)
         .subscribe(
           () => {
-            this.showMessage('Wizyta została zarezerwowana pomyślnie');
             this.loadAvailabilities();
           },
           (error) => {
             console.error('Error booking appointment:', error);
-            this.showMessage('Nie udało się zarezerwować wizyty', true);
           }
         );
     }
   }
 
-  showMessage(message: string, isError: boolean = false) {
-    this.message = message;
-    this.isError = isError;
-    setTimeout(() => {
-      this.message = '';
-    }, 3000);
-  }
   isMyBooking(day: Date, slot: TimeSlot): boolean {
     const availability = this.availabilities.find(
       (a) => a.date === this.formatDate(day)

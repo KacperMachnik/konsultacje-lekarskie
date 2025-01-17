@@ -1,20 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AvailabilityService } from '../../services/availability.service';
 import { AuthService } from '../../services/auth.service';
-import { TimeSlot, Availability } from '../../models/slot.model';
+import { AbsenceService } from '../../services/absence.service';
+import { TimeSlot, Availability, Absence } from '../../models/slot.model';
 import { DatePipe } from '@angular/common';
 
 interface TimeRange {
   startTime: string;
   endTime: string;
-}
-
-interface Absence {
-  id: string;
-  doctorId: string;
-  startDate: string;
-  endDate: string;
-  reason?: string;
 }
 
 @Component({
@@ -354,6 +347,10 @@ interface Absence {
         color: #6c757d;
         font-size: 0.9rem;
       }
+      .my-booking-cancelled {
+        background-color: #ffd700; /* żółty kolor dla anulowanej wizyty */
+        cursor: not-allowed;
+      }
     `,
   ],
 })
@@ -364,6 +361,8 @@ export class DoctorCalendarComponent implements OnInit {
   selectedSlots: TimeSlot[] = [];
   isRecurring: boolean = false;
   selectedDay: number | null = null;
+  message: string = '';
+  isError: boolean = false;
 
   // UI state
   activeTab: 'availability' | 'absence' = 'availability';
@@ -391,6 +390,7 @@ export class DoctorCalendarComponent implements OnInit {
 
   constructor(
     private availabilityService: AvailabilityService,
+    private absenceService: AbsenceService, // Dodaj to
     private authService: AuthService,
     private datePipe: DatePipe
   ) {}
@@ -431,7 +431,16 @@ export class DoctorCalendarComponent implements OnInit {
   loadAbsences() {
     const doctorId = this.authService.currentUserValue?.id;
     if (doctorId) {
-      // Implement loading absences from service
+      this.absenceService.getAbsences(doctorId).subscribe(
+        (absences) => {
+          console.log('Loaded absences:', absences);
+          this.absences = absences;
+        },
+        (error) => {
+          console.error('Error loading absences:', error);
+          this.showMessage('Nie udało się załadować listy nieobecności', true);
+        }
+      );
     }
   }
 
@@ -487,17 +496,37 @@ export class DoctorCalendarComponent implements OnInit {
         reason: this.absenceReason,
       };
 
-      // Here you would:
-      // 1. Check for conflicts with existing appointments
-      // 2. Handle cancelling conflicting appointments if necessary
-      // 3. Save the absence
-      this.absences.push(newAbsence);
-      this.clearAbsenceForm();
+      this.absenceService.addAbsence(newAbsence).subscribe(
+        (savedAbsence) => {
+          console.log('Absence saved:', savedAbsence);
+          this.showMessage('Nieobecność została dodana');
+          this.loadAbsences(); // Odśwież listę
+          this.clearAbsenceForm();
+        },
+        (error) => {
+          console.error('Error adding absence:', error);
+          this.showMessage('Nie udało się dodać nieobecności', true);
+        }
+      );
+    } else {
+      this.showMessage(
+        'Proszę wypełnić datę początkową i końcową nieobecności',
+        true
+      );
     }
   }
 
   deleteAbsence(id: string) {
-    this.absences = this.absences.filter((absence) => absence.id !== id);
+    this.absenceService.deleteAbsence(id).subscribe(
+      () => {
+        this.showMessage('Nieobecność została usunięta');
+        this.loadAbsences(); // Odśwież listę po usunięciu
+      },
+      (error) => {
+        console.error('Error deleting absence:', error);
+        this.showMessage('Nie udało się usunąć nieobecności', true);
+      }
+    );
   }
 
   clearAbsenceForm() {
@@ -641,5 +670,13 @@ export class DoctorCalendarComponent implements OnInit {
         })
         .subscribe();
     });
+  }
+  showMessage(message: string, isError: boolean = false) {
+    this.message = message;
+    this.isError = isError;
+    setTimeout(() => {
+      this.message = '';
+      this.isError = false;
+    }, 3000);
   }
 }

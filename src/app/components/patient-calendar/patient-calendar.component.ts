@@ -38,9 +38,16 @@ import { DatePipe } from '@angular/common';
       <div class="week-calendar" *ngIf="selectedDoctorId">
         <div class="headers">
           <div class="time-header">Godzina</div>
-          <div *ngFor="let day of weekDays" class="day-header">
+          <div
+            *ngFor="let day of weekDays"
+            class="day-header"
+            [class.absence-day]="isDoctorAbsent(day)"
+          >
             {{ datePipe.transform(day, 'EEEE') }}<br />
             {{ datePipe.transform(day, 'dd.MM') }}
+            <div *ngIf="isDoctorAbsent(day)" class="absence-indicator">
+              Nieobecny
+            </div>
           </div>
         </div>
 
@@ -55,12 +62,27 @@ import { DatePipe } from '@angular/common';
                 class="slot-cell"
                 [class.available]="isSlotAvailable(day, slot)"
                 [class.booked]="
-                  isSlotBooked(day, slot) && !isMyBooking(day, slot)
+                  isSlotBooked(day, slot) &&
+                  !isMyBooking(day, slot) &&
+                  !isDoctorAbsent(day)
                 "
-                [class.my-booking]="isMyBooking(day, slot)"
-                [title]="
-                  isMyBooking(day, slot) ? 'Kliknij aby anulować wizytę' : ''
+                [class.my-booking]="
+                  isMyBooking(day, slot) &&
+                  !isSlotCancelled(day, slot) &&
+                  !isDoctorAbsent(day)
                 "
+                [class.my-booking-cancelled]="
+                  isMyBooking(day, slot) && isSlotCancelled(day, slot)
+                "
+                [class.cancelled]="
+                  !isMyBooking(day, slot) && isSlotCancelled(day, slot)
+                "
+                [class.absence-slot]="
+                  isDoctorAbsent(day) &&
+                  !isSlotCancelled(day, slot) &&
+                  !isMyBooking(day, slot)
+                "
+                [title]="getSlotTitle(day, slot)"
                 (click)="bookAppointment(day, slot)"
               ></div>
             </div>
@@ -82,6 +104,18 @@ import { DatePipe } from '@angular/common';
           <div class="legend-color my-booking"></div>
           <span>Twoja wizyta (kliknij aby anulować)</span>
         </div>
+        <div class="legend-item">
+          <div class="legend-color my-booking-cancelled"></div>
+          <span>Twoja anulowana wizyta</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color cancelled"></div>
+          <span>Wizyta odwołana</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color absence"></div>
+          <span>Nieobecność lekarza</span>
+        </div>
       </div>
 
       <div *ngIf="message" class="message" [class.error]="isError">
@@ -96,12 +130,14 @@ import { DatePipe } from '@angular/common';
         max-width: 1200px;
         margin: 0 auto;
       }
+
       .doctor-selector {
         margin-bottom: 1rem;
         padding: 1rem;
         background: #f8f9fa;
         border-radius: 4px;
       }
+
       .form-control {
         width: 100%;
         padding: 0.5rem;
@@ -109,6 +145,7 @@ import { DatePipe } from '@angular/common';
         border: 1px solid #ccc;
         border-radius: 4px;
       }
+
       .navigation {
         display: flex;
         justify-content: space-between;
@@ -118,17 +155,20 @@ import { DatePipe } from '@angular/common';
         background: #f8f9fa;
         border-radius: 4px;
       }
+
       .week-calendar {
         border: 1px solid #ccc;
         border-radius: 4px;
         overflow: hidden;
         margin-bottom: 1rem;
       }
+
       .headers {
         display: grid;
         grid-template-columns: 120px repeat(7, 1fr);
         background: #f5f5f5;
       }
+
       .time-header,
       .day-header {
         padding: 1rem;
@@ -137,45 +177,107 @@ import { DatePipe } from '@angular/common';
         border-right: 1px solid #ccc;
         font-weight: bold;
       }
+
+      .day-header.absence-day {
+        background-color: #ffebee;
+      }
+
+      .absence-indicator {
+        font-size: 0.8rem;
+        color: #dc3545;
+        margin-top: 0.25rem;
+      }
+
       .time-slots {
         display: grid;
       }
+
       .time-row {
         display: grid;
         grid-template-columns: 120px repeat(7, 1fr);
         border-bottom: 1px solid #eee;
       }
+
       .time-label {
         padding: 0.5rem;
         background: #f8f9fa;
         border-right: 1px solid #ccc;
         font-size: 0.9rem;
       }
+
       .slot-cell {
         padding: 1rem;
         border-right: 1px solid #eee;
         cursor: pointer;
         min-height: 50px;
       }
+
       .available {
         background-color: #90ee90;
         transition: background-color 0.2s;
       }
+
       .available:hover {
         background-color: #70cc70;
       }
+
       .booked {
         background-color: #ffb6c1;
         cursor: not-allowed;
       }
+
       .my-booking {
         background-color: #007bff;
+        color: white;
         cursor: pointer;
         transition: background-color 0.2s;
       }
+
       .my-booking:hover {
         background-color: #0056b3;
       }
+
+      .my-booking-cancelled {
+        background-color: #ffd700;
+        cursor: not-allowed;
+      }
+
+      .absence-slot {
+        background-color: rgba(
+          255,
+          235,
+          238,
+          0.7
+        ); /* półprzezroczysty czerwony */
+        cursor: not-allowed;
+      }
+
+      .legend-color.absence-slot {
+        background-color: rgba(255, 235, 238, 1); /* pełny kolor dla legendy */
+      }
+
+      .cancelled {
+        background-color: #ffe0e0;
+        position: relative;
+        cursor: not-allowed;
+      }
+
+      .cancelled::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(220, 53, 69, 0.1) 10px,
+          rgba(220, 53, 69, 0.1) 20px
+        );
+      }
+
       button {
         padding: 0.5rem 1rem;
         border: none;
@@ -184,9 +286,11 @@ import { DatePipe } from '@angular/common';
         color: white;
         cursor: pointer;
       }
+
       button:hover {
         background: #0056b3;
       }
+
       .message {
         margin-top: 1rem;
         padding: 1rem;
@@ -194,31 +298,56 @@ import { DatePipe } from '@angular/common';
         background-color: #d4edda;
         color: #155724;
       }
+
       .message.error {
         background-color: #f8d7da;
         color: #721c24;
       }
+
       .legend {
         margin-top: 1rem;
         padding: 1rem;
         background: #f8f9fa;
         border-radius: 4px;
       }
+
       .legend h3 {
         margin-top: 0;
         margin-bottom: 0.5rem;
       }
+
       .legend-item {
         display: flex;
         align-items: center;
         margin-bottom: 0.5rem;
       }
+
       .legend-color {
         width: 20px;
         height: 20px;
         margin-right: 0.5rem;
         border-radius: 4px;
       }
+
+      .legend-color.available {
+        background-color: #90ee90;
+      }
+      .legend-color.booked {
+        background-color: #ffb6c1;
+      }
+      .legend-color.my-booking {
+        background-color: #007bff;
+      }
+      .legend-color.my-booking-cancelled {
+        background-color: #ffd700;
+      }
+      .legend-color.cancelled {
+        background-color: #ffe0e0;
+      }
+      .legend-color.absence {
+        background-color: #ffebee;
+      }
+
       .legend-item:last-child {
         margin-bottom: 0;
       }
@@ -526,6 +655,9 @@ export class PatientCalendarComponent implements OnInit {
   getSlotTitle(day: Date, slot: TimeSlot): string {
     if (this.isDoctorAbsent(day)) {
       return 'Lekarz nieobecny w tym dniu';
+    }
+    if (this.isMyBooking(day, slot) && this.isSlotCancelled(day, slot)) {
+      return 'Twoja wizyta została anulowana';
     }
     if (this.isSlotCancelled(day, slot)) {
       return 'Wizyta odwołana z powodu nieobecności lekarza';

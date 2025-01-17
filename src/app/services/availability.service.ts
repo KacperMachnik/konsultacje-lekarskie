@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Availability, TimeSlot } from '../models/slot.model';
 
 @Injectable({
@@ -16,28 +16,26 @@ export class AvailabilityService {
     startDate: string,
     endDate: string
   ): Observable<Availability[]> {
-    // Zmiana w URL - używamy tylko doctorId jako filtra
-    const url = `${this.apiUrl}?doctorId=${doctorId}`;
+    // Dodajemy date do URL, aby filtrować po stronie API
+    const url = `${this.apiUrl}?doctorId=${doctorId}&date=${startDate}`;
     console.log('Requesting:', url);
 
     return this.http.get<Availability[]>(url).pipe(
-      tap((data) => {
+      map((data) => {
         console.log('Raw API response:', data);
-
-        // Filtrujemy daty po stronie klienta
-        const filtered = data.filter((item) => {
-          const itemDate = item.date;
-          return itemDate >= startDate && itemDate <= endDate;
-        });
-
+        // Filtrujemy tylko te rekordy, które pasują do wybranej daty
+        const filtered = data.filter((item) => item.date === startDate);
         console.log('Filtered data:', filtered);
+        return filtered;
       })
     );
   }
+
   setAvailability(availability: Availability): Observable<Availability> {
     console.log('Saving availability:', availability);
     return this.http.post<Availability>(this.apiUrl, availability);
   }
+
   updateAvailability(availability: Availability): Observable<Availability> {
     return this.http.put<Availability>(
       `${this.apiUrl}/${availability.id}`,
@@ -70,7 +68,6 @@ export class AvailabilityService {
         patientId: null,
       });
     }
-
     console.log('Generated slots:', slots);
     return slots;
   }
@@ -85,8 +82,8 @@ export class AvailabilityService {
         ? { ...s, isBooked: true, patientId }
         : s
     );
-
     const updatedAvailability = { ...availability, slots: updatedSlots };
+
     return this.http.put<Availability>(
       `${this.apiUrl}/${availability.id}`,
       updatedAvailability

@@ -5,7 +5,7 @@ export interface TimeSlot {
   patientId: string | null;
 }
 export interface Availability {
-  id: number;
+  id: string;
   doctorId: string;
   date: string;
   slots: TimeSlot[];

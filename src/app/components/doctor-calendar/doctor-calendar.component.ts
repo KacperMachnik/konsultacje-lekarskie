@@ -104,8 +104,12 @@ export class DoctorCalendarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Ustawiamy dzisiejszą datę jako domyślną
+    const today = new Date();
+    this.selectedDate = today.toISOString().split('T')[0];
+    // Generujemy dostępne sloty
     this.availableSlots = this.availabilityService.generateTimeSlots();
-    this.selectedDate = new Date().toISOString().split('T')[0];
+    // Ładujemy dostępności dla wybranego dnia
     this.loadAvailability();
   }
 
@@ -118,12 +122,19 @@ export class DoctorCalendarComponent implements OnInit {
           this.selectedDate,
           this.selectedDate
         )
-        .subscribe((availability) => {
-          if (availability.length > 0) {
-            this.selectedSlots = availability[0].slots;
-            this.isRecurring = availability[0].isRecurring;
-            this.selectedDay = availability[0].recurringDay;
+        .subscribe((availabilities) => {
+          // Znajdź dostępność dla konkretnej daty
+          const availabilityForDate = availabilities.find(
+            (a) => a.date === this.selectedDate
+          );
+
+          if (availabilityForDate) {
+            // Jeśli znaleziono dostępność dla wybranej daty
+            this.selectedSlots = [...availabilityForDate.slots]; // Używamy spread operator dla stworzenia nowej tablicy
+            this.isRecurring = availabilityForDate.isRecurring;
+            this.selectedDay = availabilityForDate.recurringDay;
           } else {
+            // Jeśli nie ma dostępności na ten dzień, resetujemy wszystkie wartości
             this.selectedSlots = [];
             this.isRecurring = false;
             this.selectedDay = null;
@@ -142,10 +153,19 @@ export class DoctorCalendarComponent implements OnInit {
     const index = this.selectedSlots.findIndex(
       (s) => s.startTime === slot.startTime && s.endTime === slot.endTime
     );
+
     if (index === -1) {
-      this.selectedSlots.push({ ...slot });
+      // Dodaj nowy slot z wszystkimi właściwościami
+      this.selectedSlots.push({
+        ...slot,
+        isBooked: false,
+        patientId: null,
+      });
     } else {
-      this.selectedSlots.splice(index, 1);
+      // Usuń slot, jeśli nie jest zarezerwowany
+      if (!this.selectedSlots[index].isBooked) {
+        this.selectedSlots.splice(index, 1);
+      }
     }
   }
 
@@ -153,16 +173,23 @@ export class DoctorCalendarComponent implements OnInit {
     const doctorId = this.authService.currentUserValue?.id;
     if (doctorId) {
       const availability: Availability = {
-        id: Date.now(),
+        id: String(Date.now()),
         doctorId,
         date: this.selectedDate,
-        slots: this.selectedSlots,
+        slots: this.selectedSlots.map((slot) => ({
+          ...slot,
+          isBooked: slot.isBooked || false,
+          patientId: slot.patientId || null,
+        })),
         isRecurring: this.isRecurring,
         recurringDay: this.isRecurring ? this.selectedDay : null,
       };
+
       this.availabilityService.setAvailability(availability).subscribe(
         (response) => {
           console.log('Availability saved successfully');
+          // Odświeżamy widok po zapisie
+          this.loadAvailability();
         },
         (error) => {
           console.error('Error saving availability:', error);

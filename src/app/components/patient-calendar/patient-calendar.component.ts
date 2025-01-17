@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AvailabilityService } from '../../services/availability.service';
 import { AuthService } from '../../services/auth.service';
 import { DoctorService } from '../../services/doctor.service';
-import { Availability, TimeSlot } from '../../models/slot.model';
+import { Availability, TimeSlot, Absence } from '../../models/slot.model';
 import { User } from '../../models/user.model';
 import { DatePipe } from '@angular/common';
 
@@ -233,6 +233,7 @@ export class PatientCalendarComponent implements OnInit {
   availableSlots: TimeSlot[] = [];
   availabilities: Availability[] = [];
   doctors: User[] = [];
+  absences: Absence[] = [];
   selectedDoctorId: string | null = null;
   message: string = '';
   isError: boolean = false;
@@ -267,8 +268,7 @@ export class PatientCalendarComponent implements OnInit {
   onDoctorChange() {
     console.log('Doctor changed:', this.selectedDoctorId);
     if (this.selectedDoctorId) {
-      this.selectedDoctorId = this.selectedDoctorId;
-      console.log('Converted doctor ID:', this.selectedDoctorId);
+      this.loadAbsences(); // Add this line
       this.loadAvailabilities();
     }
   }
@@ -337,6 +337,8 @@ export class PatientCalendarComponent implements OnInit {
   }
 
   isSlotAvailable(day: Date, slot: TimeSlot): boolean {
+    if (this.isDoctorAbsent(day)) return false;
+
     const availability = this.availabilities.find(
       (a) => a.date === this.formatDate(day)
     );
@@ -354,7 +356,46 @@ export class PatientCalendarComponent implements OnInit {
       (s) =>
         s.startTime === slot.startTime &&
         s.endTime === slot.endTime &&
-        !s.isBooked
+        !s.isBooked &&
+        !s.isCancelled
+    );
+  }
+  isSlotCancelled(day: Date, slot: TimeSlot): boolean {
+    const availability = this.availabilities.find(
+      (a) => a.date === this.formatDate(day)
+    );
+
+    if (!availability) return false;
+
+    return availability.slots.some(
+      (s) =>
+        s.startTime === slot.startTime &&
+        s.endTime === slot.endTime &&
+        s.isBooked &&
+        s.isCancelled
+    );
+  }
+  isDoctorAbsent(day: Date): boolean {
+    const dayStr = this.formatDate(day);
+    return this.absences.some(
+      (absence) => dayStr >= absence.startDate && dayStr <= absence.endDate
+    );
+  }
+
+  // Add new method for loading absences
+  loadAbsences() {
+    if (!this.selectedDoctorId) return;
+
+    this.availabilityService.getAbsences(this.selectedDoctorId).subscribe(
+      (absences) => {
+        console.log('Loaded absences:', absences);
+        this.absences = absences;
+        this.loadAvailabilities(); // Reload to reflect cancelled appointments
+      },
+      (error) => {
+        console.error('Error loading absences:', error);
+        this.showMessage('Nie udało się załadować nieobecności lekarza', true);
+      }
     );
   }
 
@@ -380,6 +421,11 @@ export class PatientCalendarComponent implements OnInit {
       return;
     }
 
+    if (this.isDoctorAbsent(day)) {
+      this.showMessage('Lekarz jest nieobecny w tym dniu', true);
+      return;
+    }
+
     const availability = this.availabilities.find(
       (a) => a.date === this.formatDate(day)
     );
@@ -388,10 +434,9 @@ export class PatientCalendarComponent implements OnInit {
 
     // Jeśli to moja rezerwacja, anuluj ją
     if (this.isMyBooking(day, slot)) {
-      // Tworzymy kopię slotu i ustawiamy jako dostępny
       const updatedSlots = availability.slots.map((s) =>
         s.startTime === slot.startTime && s.endTime === slot.endTime
-          ? { ...s, isBooked: false, patientId: null }
+          ? { ...s, isBooked: false, patientId: null, isCancelled: false }
           : s
       );
 
@@ -403,25 +448,33 @@ export class PatientCalendarComponent implements OnInit {
       this.availabilityService
         .updateAvailability(updatedAvailability)
         .subscribe(
-          (response) => {
+          () => {
             this.showMessage('Wizyta została anulowana');
             this.loadAvailabilities();
           },
           (error) => {
+            console.error('Error cancelling appointment:', error);
             this.showMessage('Nie udało się anulować wizyty', true);
           }
         );
       return;
     }
 
-    // Jeśli slot jest zajęty przez kogoś innego, nie pozwalaj na rezerwację
-    if (this.isSlotBooked(day, slot)) return;
+    // Jeśli slot jest zajęty lub anulowany, nie pozwalaj na rezerwację
+    if (this.isSlotBooked(day, slot) || this.isSlotCancelled(day, slot)) {
+      return;
+    }
 
     // Standardowa rezerwacja dla dostępnego slotu
     if (this.isSlotAvailable(day, slot)) {
       const updatedSlots = availability.slots.map((s) =>
         s.startTime === slot.startTime && s.endTime === slot.endTime
-          ? { ...s, isBooked: true, patientId: currentUser.id }
+          ? {
+              ...s,
+              isBooked: true,
+              patientId: currentUser.id,
+              isCancelled: false,
+            }
           : s
       );
 
@@ -433,11 +486,12 @@ export class PatientCalendarComponent implements OnInit {
       this.availabilityService
         .updateAvailability(updatedAvailability)
         .subscribe(
-          (response) => {
+          () => {
             this.showMessage('Wizyta została zarezerwowana pomyślnie');
             this.loadAvailabilities();
           },
           (error) => {
+            console.error('Error booking appointment:', error);
             this.showMessage('Nie udało się zarezerwować wizyty', true);
           }
         );
@@ -468,5 +522,23 @@ export class PatientCalendarComponent implements OnInit {
         s.isBooked &&
         s.patientId === currentUser.id
     );
+  }
+  getSlotTitle(day: Date, slot: TimeSlot): string {
+    if (this.isDoctorAbsent(day)) {
+      return 'Lekarz nieobecny w tym dniu';
+    }
+    if (this.isSlotCancelled(day, slot)) {
+      return 'Wizyta odwołana z powodu nieobecności lekarza';
+    }
+    if (this.isMyBooking(day, slot)) {
+      return 'Kliknij aby anulować wizytę';
+    }
+    if (this.isSlotBooked(day, slot)) {
+      return 'Termin zajęty';
+    }
+    if (this.isSlotAvailable(day, slot)) {
+      return 'Kliknij aby zarezerwować wizytę';
+    }
+    return '';
   }
 }

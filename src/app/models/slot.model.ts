@@ -2,11 +2,11 @@ export interface TimeSlot {
   startTime: string;
   endTime: string;
   isBooked: boolean;
-  patientId: number | null;
+  patientId: string | null;
 }
 export interface Availability {
   id: number;
-  doctorId: number;
+  doctorId: string;
   date: string;
   slots: TimeSlot[];
   isRecurring: boolean;

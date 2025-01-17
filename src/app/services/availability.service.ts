@@ -12,7 +12,7 @@ export class AvailabilityService {
   constructor(private http: HttpClient) {}
 
   getAvailabilityForDoctor(
-    doctorId: number,
+    doctorId: string,
     startDate: string,
     endDate: string
   ): Observable<Availability[]> {
@@ -78,7 +78,7 @@ export class AvailabilityService {
   bookAppointment(
     availability: Availability,
     slot: TimeSlot,
-    patientId: number
+    patientId: string
   ): Observable<Availability> {
     const updatedSlots = availability.slots.map((s) =>
       s.startTime === slot.startTime && s.endTime === slot.endTime

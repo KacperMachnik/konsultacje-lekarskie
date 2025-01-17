@@ -38,14 +38,14 @@
         {
           "startTime": "06:00",
           "endTime": "06:30",
-          "isBooked": false,
-          "patientId": null
+          "isBooked": true,
+          "patientId": "3"
         },
         {
           "startTime": "06:30",
           "endTime": "07:00",
-          "isBooked": false,
-          "patientId": null
+          "isBooked": true,
+          "patientId": "4"
         }
       ],
       "isRecurring": false,
@@ -101,14 +101,14 @@
         {
           "startTime": "06:00",
           "endTime": "06:30",
-          "isBooked": false,
-          "patientId": null
+          "isBooked": true,
+          "patientId": "3"
         },
         {
           "startTime": "06:30",
           "endTime": "07:00",
-          "isBooked": false,
-          "patientId": null
+          "isBooked": true,
+          "patientId": "4"
         }
       ],
       "isRecurring": false,
@@ -122,14 +122,14 @@
         {
           "startTime": "06:00",
           "endTime": "06:30",
-          "isBooked": false,
-          "patientId": null
+          "isBooked": true,
+          "patientId": "3"
         },
         {
           "startTime": "06:30",
           "endTime": "07:00",
-          "isBooked": false,
-          "patientId": null
+          "isBooked": true,
+          "patientId": "4"
         },
         {
           "startTime": "08:00",

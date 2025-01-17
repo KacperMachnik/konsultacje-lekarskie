@@ -233,7 +233,7 @@ export class PatientCalendarComponent implements OnInit {
   availableSlots: TimeSlot[] = [];
   availabilities: Availability[] = [];
   doctors: User[] = [];
-  selectedDoctorId: number | null = null;
+  selectedDoctorId: string | null = null;
   message: string = '';
   isError: boolean = false;
 
@@ -267,7 +267,7 @@ export class PatientCalendarComponent implements OnInit {
   onDoctorChange() {
     console.log('Doctor changed:', this.selectedDoctorId);
     if (this.selectedDoctorId) {
-      this.selectedDoctorId = Number(this.selectedDoctorId);
+      this.selectedDoctorId = this.selectedDoctorId;
       console.log('Converted doctor ID:', this.selectedDoctorId);
       this.loadAvailabilities();
     }
